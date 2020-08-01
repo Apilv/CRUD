@@ -39,8 +39,8 @@ function table($result, $result2)
             }
         }
     } else if (isset($_POST["projects"])) {
-        echo ('
-        <th>ID</thead>
+        echo (
+        '<th>ID</thead>
         <th>Name</th>');
 
         if (mysqli_num_rows($result2) > 0) {
@@ -48,6 +48,20 @@ function table($result, $result2)
                 echo ('<tr>');
                 echo ('<td>' . $row["id"] . '</td>');
                 echo ('<td>' . $row["name"] . '</td>');
+            }
+        }
+    } else {
+        echo (
+        '<th>ID</thead>
+        <th>Name</th>
+        <th>Project</th>');
+
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo ('<tr>');
+                echo ('<td>' . $row["id"] . '</td>');
+                echo ('<td>' . $row["name"] . '</td>');
+                echo ('<td>' . $row["project"] . '</td>');
             }
         }
     }

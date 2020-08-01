@@ -10,12 +10,16 @@ include 'logic.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Project</title>
     <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript">
+        document.getElementsById("#projects").click();
+    </script>
 </head>
 
 <body>
     <form action="" method="post">
-        <button type="submit" name="projects">Projects</button>
-        <button type="submit" name="employees" autofocus>Employees</button>
+        <button id="projects" type="submit" name="projects">Projects</button>
+        <button type="submit" name="employees">Employees</button>
     </form>
     <table>
         <?php table($result, $result2)?>
