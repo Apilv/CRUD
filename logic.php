@@ -20,9 +20,11 @@ $result = mysqli_query($conn, $employ);
 $proj = "SELECT id, name FROM projects";
 $result2 = mysqli_query($conn, $proj);
 
-#---------------TABLE-------------------
+mysqli_close($conn);
 
-function table($result, $result2)
+#---------------HELPER FUNCTIONS TO GENERATE TABLE CONTENT-------------------
+
+function employ($result)
 {
     if (isset($_POST["employees"])) {
         echo ('
@@ -38,9 +40,13 @@ function table($result, $result2)
                 echo ('<td>' . $row["project"] . '</td>');
             }
         }
-    } else if (isset($_POST["projects"])) {
-        echo (
-        '<th>ID</thead>
+    }
+}
+
+function projects($result2)
+{
+    if (isset($_POST["projects"])) {
+        echo ('<th>ID</thead>
         <th>Name</th>');
 
         if (mysqli_num_rows($result2) > 0) {
@@ -50,9 +56,14 @@ function table($result, $result2)
                 echo ('<td>' . $row["name"] . '</td>');
             }
         }
-    } else {
-        echo (
-        '<th>ID</thead>
+    }
+}
+
+function default_table($result)
+{
+    if (isset($_POST["employees"]) != true and isset($_POST["projects"]) != true) {
+        echo ('
+        <th>ID</thead>
         <th>Name</th>
         <th>Project</th>');
 
@@ -63,7 +74,17 @@ function table($result, $result2)
                 echo ('<td>' . $row["name"] . '</td>');
                 echo ('<td>' . $row["project"] . '</td>');
             }
-        }
+        };
     }
 }
-mysqli_close($conn);
+
+
+#-------------------TABLE-------------------
+
+function table($result, $result2)
+{
+    default_table($result);
+    projects($result);
+    employ($result2);
+}
+
