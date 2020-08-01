@@ -10,10 +10,6 @@ include 'logic.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Project</title>
     <link rel="stylesheet" href="style.css">
-
-    <script type="text/javascript">
-        document.getElementsById("#projects").click();
-    </script>
 </head>
 
 <body>
