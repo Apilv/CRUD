@@ -1,6 +1,6 @@
 <?php
 
-#---------------LOG IN TO DATABASE-------------------
+#---------------LOG IN TO DB-------------------
 $servername = "localhost";
 $username = "root";
 $password = "mysql";
@@ -26,9 +26,9 @@ mysqli_close($conn);
 
 function employ($result)
 {
-    if (isset($_POST["employees"])) {
+    if (isset($_POST["employees"]) or isset($_POST["projects"]) != true) {
         echo ('
-        <th>ID</thead>
+        <th>ID</th>
         <th>Name</th>
         <th>Project</th>');
 
@@ -46,7 +46,7 @@ function employ($result)
 function projects($result2)
 {
     if (isset($_POST["projects"])) {
-        echo ('<th>ID</thead>
+        echo ('<th>ID</th>
         <th>Name</th>');
 
         if (mysqli_num_rows($result2) > 0) {
@@ -59,32 +59,15 @@ function projects($result2)
     }
 }
 
-function default_table($result)
-{
-    if (isset($_POST["employees"]) != true and isset($_POST["projects"]) != true) {
-        echo ('
-        <th>ID</thead>
-        <th>Name</th>
-        <th>Project</th>');
-
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo ('<tr>');
-                echo ('<td>' . $row["id"] . '</td>');
-                echo ('<td>' . $row["name"] . '</td>');
-                echo ('<td>' . $row["project"] . '</td>');
-            }
-        };
-    }
-}
 
 
 #-------------------TABLE-------------------
 
 function table($result, $result2)
 {
-    default_table($result);
-    projects($result);
-    employ($result2);
+    projects($result2);
+    employ($result);
 }
+
+#-------------------DELETE-------------------
 

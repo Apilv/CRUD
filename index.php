@@ -14,7 +14,7 @@ include 'logic.php';
 
 <body>
     <form action="" method="post">
-        <button id="projects" type="submit" name="projects">Projects</button>
+        <button type="submit" name="projects">Projects</button>
         <button type="submit" name="employees">Employees</button>
     </form>
     <table>
