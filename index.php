@@ -5,6 +5,7 @@ include 'logic.php';
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,8 @@ include 'logic.php';
         <button type="submit" name="employees">Employees</button>
     </form>
     <table>
-        <?php table($result, $result2)?>
+        <?php
+        table($result, $result2); ?>
     </table>
 </body>
 
