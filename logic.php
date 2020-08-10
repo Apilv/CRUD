@@ -38,32 +38,37 @@ mysqli_close($conn);
 
 function employ($result)
 {
-    if (isset($_POST["employees"]) or isset($_POST["projects"]) != true) {
-        echo ('
-        <th>ID</th>
-        <th>Name</th>
-        <th>Project</th>
-        <th>Deadline</th>');
 
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo ('<tr>');
-                echo ('<td>' . $row["ID"] . '</td>');
-                echo ('<td>' . $row["Name"] . '</td>');
-                echo ('<td>' . $row["ProjectID"] . '</td>');
-                echo ('<td>' . $row["deadline"] . '</td>');
-            }
+    if (isset($_GET["employees"]) or  isset($_GET["projects"]) != true) {
+        echo ('
+            <th>ID</th>
+            <th>Name</th>
+            <th>Project</th>
+            <th>Deadline</th>');
+    }
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo ('<tr>');
+            echo ('<td>' . $row["ID"] . '</td>');
+            echo ('<td>' . $row["Name"] . '</td>');
+            echo ('<td>' . $row["ProjectID"] . '</td>');
+            echo ('<td>' . $row["deadline"] . '</td>');
+            echo ('<td> <button><a href= ?employees/delete' . $row["ID"] . '>DELETE</a></button>
+                        <button><a href= ?employees/update' .  $row["ID"] . '>UPDATE</a></button></td>');
+            echo ('</tr>');           
         }
     }
 }
 
+
 function projects($result2)
 {
-    if (isset($_POST["projects"])) {
+    if (isset($_GET["projects"])) {
         echo ('<th>ID</th>
         <th>Project</th>
         <th>Team</th>
-        <th>Deadline</th>');
+        <th>Deadline</th>
+        <th>Update</th>');
 
         if (mysqli_num_rows($result2) > 0) {
             while ($row = mysqli_fetch_assoc($result2)) {
@@ -72,6 +77,8 @@ function projects($result2)
                 echo ('<td>' . $row["project"] . '</td>');
                 echo ('<td>' . $row["Team"] . '</td>');
                 echo ('<td>' . $row["deadline"] . '</td>');
+                echo ('<td> <button><a href= ?projects/delete' . $row["id"] . '>DELETE</a></button>
+                            <button><a <a href= ?projects/update' .  $row["id"] . '>UPDATE</a></button>');
             }
         }
     }
@@ -87,5 +94,4 @@ function table($result, $result2)
     employ($result);
 }
 
-#-------------------DELETE-------------------
-
+#-------------------UPDATE-------------------

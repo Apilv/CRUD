@@ -14,13 +14,13 @@ include 'logic.php';
 </head>
 
 <body>
-    <form action="" method="post">
+    <form action="" method="get">
         <button type="submit" name="projects">Projects</button>
         <button type="submit" name="employees">Employees</button>
     </form>
     <table>
         <?php
-        table($result, $result2); ?>
+        table($result, $result2);?>
     </table>
 </body>
 
